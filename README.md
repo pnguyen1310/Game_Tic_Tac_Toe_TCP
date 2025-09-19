@@ -110,8 +110,12 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 
 ### 📌 Ví dụ bàn cờ thắng:
-<img width="480"  alt="image" src="images/Capture3.PNG" />
-<em> Hình 1: Ví dụ bàn cờ khi chiến thắng </em>
+<p align="center">
+  <img width="480"  alt="image" src="images/Capture3.PNG" />
+  <br>
+ <em> Hình 1: Ví dụ bàn cờ khi chiến thắng </em>
+</p>
+
 ## 🔧 2. Công nghệ sử dụng
 
 - **Ngôn ngữ lập trình:** Java  
@@ -186,6 +190,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ### 📞 5. Liên hệ
  * ## Email: nguyendaophucnguyen13@gmail.com
  * ## GitHub: pnguyen1310
+
 
 
 
