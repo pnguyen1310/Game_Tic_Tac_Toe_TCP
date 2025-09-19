@@ -117,8 +117,8 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 </p>
 
 ## 🔧 2. Công nghệ sử dụng
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)
-[![JDK](https://img.shields.io/badge/JDK-17-blueviolet)](https://adoptium.net/)
+[![Java](https://img.shields.io/badge/Java-24-orange)](https://www.oracle.com/java/)
+[![JDK](https://img.shields.io/badge/JDK-24-blueviolet)](https://adoptium.net/)
 [![Language](https://img.shields.io/badge/Language-Java-green)](https://www.java.com/)
 [![TCP](https://img.shields.io/badge/Protocol-TCP-9cf)](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 [![Socket](https://img.shields.io/badge/Socket-Server/Socket-blue)](https://docs.oracle.com/en/java/)
@@ -216,6 +216,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ### 📞 5. Liên hệ
  * ## Email: nguyendaophucnguyen13@gmail.com
  * ## GitHub: pnguyen1310
+
 
 
 
