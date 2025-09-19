@@ -110,7 +110,8 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 
 ### 📌 Ví dụ bàn cờ thắng:
-*<img width="480"  alt="image" src="images/Capture3.PNG" />
+<img width="480"  alt="image" src="images/Capture3.PNG" />
+<em> Hình 1: Ví dụ bàn cờ khi chiến thắng </em>
 ## 🔧 2. Công nghệ sử dụng
 
 - **Ngôn ngữ lập trình:** Java  
@@ -124,19 +125,19 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 ###  Giao diện Đăng nhập
 <img src="images/Capture.PNG" alt="Giao diện Đăng nhập" width="450" />
-<em>Hình 1: Giao diện Đăng nhập</em>
+<em> Hình 2: Giao diện Đăng nhập </em>
 ###  Giao diện Lobby
 <img src="images/Capture1.PNG" alt="Giao diện Lobby" width="450" />
-<em>Hình 2: Giao diện Lobby</em>
+<em> Hình 3: Giao diện Lobby </em>
 ###  Giao diện bàn cờ và khung chat
 <img src="images/Capture2.PNG" alt="Giao diện bàn cờ và khung chat" width="700" />
-<em>Hình 3: Giao diện bàn cờ và khung chat</em>
+<em> Hình 4: Giao diện bàn cờ và khung chat </em>
 ###  Giao diện chiến thắng
 <img src="images/Capture3.PNG" alt="Giao diện chiến thắng" width="450" />
-<em>Hình 4: Giao diện chiến thắng</em>
+<em> Hình 5: Giao diện chiến thắng </em>
 ###  Giao diện Thua
 <img src="images/Capture4.PNG" alt="Giao diện Thống kê" width="450" />
-<em>Hình 5: Giao diện thua</em>
+<em> Hình 6: Giao diện thua </em>
 ## ⚙️ 4. Các bước cài đặt & Chạy ứng dụng
 
 ### 🛠️ 4.1. Yêu cầu hệ thống
@@ -185,6 +186,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ### 📞 5. Liên hệ
  * ## Email: nguyendaophucnguyen13@gmail.com
  * ## GitHub: pnguyen1310
+
 
 
 
