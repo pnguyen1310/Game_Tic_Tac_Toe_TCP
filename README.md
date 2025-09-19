@@ -214,8 +214,10 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ---
 
 ### 📞 5. Liên hệ
- * ## Email: nguyendaophucnguyen13@gmail.com
- * ## GitHub: pnguyen1310
+- 👨‍🎓 **Sinh viên thực hiện**: Nguyễn Đào Phúc Nguyên
+- 🎓 **Khoa**: Công nghệ thông tin – Đại học Đại Nam
+- 📧 **Email**: nguyendaophucnguyen13@gmail.com
+
 
 
 
