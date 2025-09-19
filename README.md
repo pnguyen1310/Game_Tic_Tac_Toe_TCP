@@ -140,24 +140,28 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
   <br>
 <em> Hình 3: Giao diện Lobby </em>
 </p>
+
 ###  Giao diện bàn cờ và khung chat
 <p align="center">
  <img src="images/Capture2.PNG" alt="Giao diện bàn cờ và khung chat" width="700" />
   <br>
 <em> Hình 4: Giao diện bàn cờ và khung chat </em>
 </p>
+
 ###  Giao diện chiến thắng
 <p align="center">
  <img src="images/Capture3.PNG" alt="Giao diện chiến thắng" width="450" />
   <br>
 <em> Hình 5: Giao diện chiến thắng </em>
 </p>
+
 ###  Giao diện Thua
 <p align="center">
  <img src="images/Capture4.PNG" alt="Giao diện Thống kê" width="450" />
   <br>
 <em> Hình 6: Giao diện thua </em>
 </p>
+
 ## ⚙️ 4. Các bước cài đặt & Chạy ứng dụng
 
 ### 🛠️ 4.1. Yêu cầu hệ thống
@@ -206,6 +210,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ### 📞 5. Liên hệ
  * ## Email: nguyendaophucnguyen13@gmail.com
  * ## GitHub: pnguyen1310
+
 
 
 
