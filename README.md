@@ -37,8 +37,6 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 ---
 
 ### 🌐 Giao thức & Kết nối
-# Giao thức kết nối
-
 - **Kết nối**: Client và Server giao tiếp qua TCP cổng 5555.  
 - **Dữ liệu truyền**: dạng văn bản (text), mã hóa UTF-8, mỗi yêu cầu/trả lời là một dòng.  
 
@@ -199,6 +197,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 - 👨‍🎓 **Sinh viên thực hiện**: Nguyễn Đào Phúc Nguyên
 - 🎓 **Khoa**: Công nghệ thông tin – Đại học Đại Nam
 - 📧 **Email**: nguyendaophucnguyen13@gmail.com
+
 
 
 
