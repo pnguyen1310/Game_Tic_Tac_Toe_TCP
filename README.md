@@ -40,11 +40,11 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 - **Kết nối**: Client và Server giao tiếp qua TCP cổng 5555.  
 - **Dữ liệu truyền**: dạng văn bản (text), mã hóa UTF-8, mỗi yêu cầu/trả lời là một dòng.  
 
-## Cấu trúc trao đổi  
+### Cấu trúc trao đổi  
 - **Client gửi**: yêu cầu có id, lệnh (cmd), token (sau khi đăng nhập) và các tham số.  
 - **Server trả về**: kết quả với trạng thái OK hoặc ERR, kèm dữ liệu tương ứng.  
 
-## Các lệnh chính  
+### Các lệnh chính  
 - **Tài khoản**: Đăng ký, đăng nhập.  
 - **Phòng chơi**: Tạo phòng, tham gia, ghép nhanh, rời phòng.  
 - **Trạng thái**: Sẵn sàng, huỷ sẵn sàng, lấy thông tin phòng/bàn cờ.  
@@ -164,7 +164,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 ---
 
-## 4.3 Chạy ứng dụng
+### 4.3 Chạy ứng dụng
 
 ### Bước 1: Khởi động Server
 - Mở **Eclipse** hoặc terminal.
@@ -197,6 +197,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 - 👨‍🎓 **Sinh viên thực hiện**: Nguyễn Đào Phúc Nguyên
 - 🎓 **Khoa**: Công nghệ thông tin – Đại học Đại Nam
 - 📧 **Email**: nguyendaophucnguyen13@gmail.com
+
 
 
 
