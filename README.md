@@ -8,9 +8,9 @@
 </h2>
 <div align="center">
     <p align="center">
-        <img src="docs/aiotlab_logo.png" alt="AIoTLab Logo" width="170"/>
-        <img src="docs/fitdnu_logo.png" alt="AIoTLab Logo" width="180"/>
-        <img src="docs/dnu_logo.png" alt="DaiNam University Logo" width="200"/>
+        <img src="images/aiotlab_logo.png" alt="AIoTLab Logo" width="170"/>
+        <img src="images/fitdnu_logo.png" alt="AIoTLab Logo" width="180"/>
+        <img src="images/dnu_logo.png" alt="DaiNam University Logo" width="200"/>
     </p>
 
 [![AIoTLab](https://img.shields.io/badge/AIoTLab-green?style=for-the-badge)](https://www.facebook.com/DNUAIoTLab)
@@ -27,67 +27,33 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 ### 💻 Thành phần chính
 Ứng dụng gồm các thành phần chính sau:
-
-1. **TicTacToeServer**  
-   - **Quản lý kết nối** từ nhiều client.  
-   - **Xử lý logic trò chơi**: kiểm tra thắng/thua/hòa.  
-   - **Quản lý phòng chơi**: tạo phòng, tham gia phòng, rời phòng.  
-   - Giao tiếp bằng **giao thức TCP**.
-
-2. **TicTacToeClient**  
-   - **Kết nối** tới server.  
-   - **Gửi lệnh** (SET_NAME, CREATE_ROOM, JOIN_ROOM, MOVE, CHAT, PLAY_AGAIN, …).  
-   - **Nhận và xử lý** thông điệp phản hồi từ server.  
-
-3. **LoginUI**  
-   - **Giao diện đăng nhập**: cho phép người chơi nhập tên trước khi vào sảnh chờ.  
-
-4. **LobbyUI**  
-   - **Hiển thị danh sách phòng chơi**.  
-   - Cho phép **tạo phòng, tham gia phòng hoặc làm mới danh sách**.  
-
-5. **TicTacToeGUI (Game UI)**  
-   - **Bàn cờ 3x3** để chơi game.  
-   - **Hiển thị trạng thái lượt chơi**.  
-   - **Khung chat** để trao đổi giữa hai người chơi.  
-   - Các nút chức năng: **Chơi lại** và **Rời phòng**.  
-   - Hiệu ứng: **highlight 3 ô thắng**, *hover effect*, **popup kết quả**.  
-
+- **ServerMain**: Khởi động server, mở `ServerSocket` tại cổng 5555, dùng thread pool xử lý nhiều client đồng thời.  
+- **Handler**: Xử lý từng client, đọc/gửi dữ liệu qua socket và gọi Core để xử lý logic.  
+- **Core**: Bộ não của hệ thống – quản lý người dùng, token, phòng, bàn cờ, chat, lịch sử và bảng xếp hạng.  
+- **Store**: Lưu trữ dữ liệu người dùng và sự kiện (users, trận đấu, chat) trong file text (`users.txt`, `events.txt`).  
+- **ClientMain**: Điểm vào ứng dụng client, tạo kết nối tới server và mở giao diện Swing.  
+- **Net**: Lớp giao tiếp mạng cho client, gửi/nhận request–response dạng text qua TCP.  
+- **UI (Swing)**: Các màn hình đăng nhập, lobby, bàn chơi, chat – giao tiếp với `Net` để hiển thị và cập nhật dữ liệu.  
 ---
 
 ### 🌐 Giao thức & Kết nối
+# Giao thức kết nối (TicTacToe TCP)
 
-Ứng dụng **Game Caro 3x3** sử dụng mô hình **Client-Server** kết nối qua **TCP Socket** (mặc định cổng `5000`).  
+- **Kết nối**: Client và Server giao tiếp qua TCP cổng 5555.  
+- **Dữ liệu truyền**: dạng văn bản (text), mã hóa UTF-8, mỗi yêu cầu/trả lời là một dòng.  
 
-### 📥 Lệnh từ Client → Server
-- `SET_NAME <name>` : Đặt tên người chơi.  
-- `CREATE_ROOM` : Tạo phòng chơi mới.  
-- `JOIN_ROOM <roomId>` : Tham gia vào một phòng có sẵn.  
-- `MOVE <row> <col>` : Đánh cờ tại vị trí `(row, col)`.  
-- `CHAT:<message>` : Gửi tin nhắn chat.  
-- `PLAY_AGAIN_REQUEST` : Yêu cầu chơi lại.  
-- `PLAY_AGAIN_ACCEPT` : Đồng ý chơi lại.  
-- `PLAY_AGAIN_DECLINE` : Từ chối chơi lại.  
-- `LEAVE_ROOM` : Rời khỏi phòng chơi.  
-- `REFRESH` : Làm mới danh sách phòng.  
+## Cấu trúc trao đổi  
+- **Client gửi**: yêu cầu có id, lệnh (cmd), token (sau khi đăng nhập) và các tham số.  
+- **Server trả về**: kết quả với trạng thái OK hoặc ERR, kèm dữ liệu tương ứng.  
 
-### 📤 Thông điệp từ Server → Client
-- `INFO <text>` : Thông báo chung từ server.  
-- `ROOM_LIST <id>(players/2);...` : Danh sách phòng hiện tại.  
-- `ROOM_CREATED <id>` : Xác nhận phòng mới được tạo.  
-- `JOIN_SUCCESS <roomId> <symbol>` : Tham gia phòng thành công, được cấp ký hiệu `X` hoặc `O`.  
-- `JOIN_FAIL <roomId> <reason>` : Tham gia phòng thất bại.  
-- `YOUR_MOVE` : Đến lượt người chơi.  
-- `WAITING` : Chờ đối thủ đi.  
-- `MOVE <symbol> <row> <col>` : Thông báo một nước đi.  
-- `WIN <symbol>` : Người thắng cuộc.  
-- `DRAW` : Ván đấu hòa.  
-- `RESET` : Reset lại bàn cờ cho ván mới.  
-- `CHAT: PlayerName: message` : Tin nhắn chat từ người chơi.  
-- `PLAY_AGAIN_REQUEST` : Đối thủ gửi yêu cầu chơi lại.  
-- `PLAY_AGAIN_ACCEPT` : Đối thủ đồng ý chơi lại.  
-- `PLAY_AGAIN_DECLINE` : Đối thủ từ chối chơi lại.  
-
+## Các lệnh chính  
+- **Tài khoản**: Đăng ký, đăng nhập.  
+- **Phòng chơi**: Tạo phòng, tham gia, ghép nhanh, rời phòng.  
+- **Trạng thái**: Sẵn sàng, huỷ sẵn sàng, lấy thông tin phòng/bàn cờ.  
+- **Trò chơi**: Gửi nước đi, cập nhật bàn cờ, xác định thắng/thua/hòa.  
+- **Chat**: Gửi và xem lại tin nhắn trong phòng.  
+- **Thống kê**: Lịch sử đấu, bảng xếp hạng.  
+- **Replay**: Đề nghị, chấp nhận hoặc từ chối chơi lại.  
 
 ---
 
@@ -107,14 +73,6 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 - Người thắng là người có **3 ký hiệu liên tiếp** (hàng ngang, hàng dọc hoặc chéo).  
 - Nếu bàn cờ đầy mà **không ai thắng** → ván đấu hòa.  
 - Sau khi kết thúc, người chơi có thể chọn **Chơi lại** hoặc **Rời phòng**.  
-
-
-### 📌 Ví dụ bàn cờ thắng:
-<p align="center">
-  <img width="480"  alt="image" src="images/Capture3.PNG" />
-  <br>
- <em> Hình 1: Ví dụ bàn cờ khi chiến thắng </em>
-</p>
 
 ## 🔧 2. Công nghệ sử dụng
 [![Java](https://img.shields.io/badge/Java-24-orange)](https://www.oracle.com/java/)
@@ -137,35 +95,49 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 <p align="center">
   <img src="images/Capture.PNG" alt="Giao diện Đăng nhập" width="450" />
   <br>
- <em> Hình 2: Giao diện Đăng nhập </em>
+ <em> Hình 1: Giao diện Đăng nhập </em>
+</p>
+
+###  Giao diện Đăng ký
+<p align="center">
+  <img src="images/Capture1.PNG" alt="Giao diện Đăng nhập" width="450" />
+  <br>
+ <em> Hình 2: Giao diện Đăng ký </em>
 </p>
 
 ###  Giao diện Lobby
 <p align="center">
-  <img src="images/Capture1.PNG" alt="Giao diện Lobby" width="450" />
+  <img src="images/Capture2.PNG" alt="Giao diện Lobby" width="450" />
   <br>
 <em> Hình 3: Giao diện Lobby </em>
 </p>
 
+###  Giao diện Lịch sử đấu
+<p align="center">
+  <img src="images/Capture3.PNG" alt="Giao diện Lịch sử đấu" width="450" />
+  <br>
+<em> Hình 4: Giao diện Lịch sử đấu </em>
+</p>
+
+###  Giao diện Bảng xếp hạng
+<p align="center">
+  <img src="images/Capture4.PNG" alt="Giao diện Bảng xếp hạng" width="450" />
+  <br>
+<em> Hình 5: Giao diện Bảng xếp hạng </em>
+</p>
+
 ###  Giao diện bàn cờ và khung chat
 <p align="center">
- <img src="images/Capture2.PNG" alt="Giao diện bàn cờ và khung chat" width="700" />
+ <img src="images/Capture5.PNG" alt="Giao diện bàn cờ và khung chat" width="700" />
   <br>
-<em> Hình 4: Giao diện bàn cờ và khung chat </em>
+<em> Hình 6: Giao diện bàn cờ và khung chat </em>
 </p>
 
 ###  Giao diện chiến thắng
 <p align="center">
- <img src="images/Capture3.PNG" alt="Giao diện chiến thắng" width="450" />
+ <img src="images/Capture6.PNG" alt="Giao diện chiến thắng" width="450" />
   <br>
-<em> Hình 5: Giao diện chiến thắng </em>
-</p>
-
-###  Giao diện Thua
-<p align="center">
- <img src="images/Capture4.PNG" alt="Giao diện Thống kê" width="450" />
-  <br>
-<em> Hình 6: Giao diện thua </em>
+<em> Hình 7: Giao diện chiến thắng </em>
 </p>
 
 ## ⚙️ 4. Các bước cài đặt & Chạy ứng dụng
@@ -194,22 +166,32 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 
 ---
 
-### ▶️ 4.3. Chạy ứng dụng
+## 4.3 Chạy ứng dụng
 
-1. **Khởi động Server**  
-   - Mở IDE hoặc terminal tại thư mục chứa mã nguồn.  
-   - Chạy file `TicTacToeServer.java`.  
-   - Server sẽ lắng nghe trên cổng `5000` (mặc định).  
+### Bước 1: Khởi động Server
+- Mở **Eclipse** hoặc terminal.
+- Chạy file `ServerMain.java` để khởi tạo server.
+- Server sẽ lắng nghe trên **cổng 5555**.
+- Khi server chạy thành công, console sẽ hiển thị thông báo:
+  ```
+  [Server] Listening on port 5555
+  ```
 
-2. **Khởi động Client**  
-   - Chạy file `LoginUI.java`.
-   - Nhập **tên người chơi** và kết nối tới server.  
+### Bước 2: Khởi động Client
+- Chạy file `ClientMain.java`.
+- Client sẽ tự động kết nối đến server với địa chỉ **127.0.0.1:5555**.
+- Giao diện đăng nhập (LoginView) sẽ được mở ra.
 
-3. **Tham gia trò chơi**  
-   - Người chơi có thể **tạo phòng** hoặc **tham gia phòng có sẵn**.  
-   - Khi đủ 2 người, ván đấu sẽ bắt đầu.  
+### Bước 3: Đăng ký hoặc Đăng nhập
+- Người dùng có thể chọn:
+  - **Đăng ký (REGISTER)**: tạo tài khoản mới.
+  - **Đăng nhập (LOGIN)**: sử dụng tài khoản đã có.
 
-⚠️ Lưu ý: Nếu muốn chơi trên nhiều máy, đảm bảo rằng client nhập đúng **địa chỉ IP** của server thay vì `localhost`.  
+### Bước 4: Tương tác
+- Sau khi đăng nhập thành công, người dùng có thể:
+  - Tạo phòng, tham gia phòng chơi.
+  - Gửi tin nhắn chat đến server, server sẽ lưu lại lịch sử chat.
+  - Thực hiện các thao tác game (MOVE, READY, LEAVE…).
 
 ---
 
@@ -217,6 +199,7 @@ Hệ thống được xây dựng theo mô hình client–server và giao tiếp
 - 👨‍🎓 **Sinh viên thực hiện**: Nguyễn Đào Phúc Nguyên
 - 🎓 **Khoa**: Công nghệ thông tin – Đại học Đại Nam
 - 📧 **Email**: nguyendaophucnguyen13@gmail.com
+
 
 
 
